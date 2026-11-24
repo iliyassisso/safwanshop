@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "SafwanShop | اختيارات تليق بك",
+  "short_name": "SafwanShop",
+  "description": "تسوّق منتجات مختارة بعناية من SafwanShop.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f6f1",
+  "theme_color": "#315c45",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
