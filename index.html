@@ -36,6 +36,18 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+@media(max-width:650px){
+.wrap.benefits{grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;padding:8px 0 28px}
+.wrap.benefits .benefit{min-width:0;flex-direction:column;gap:5px;padding:8px 3px;border-left:1px solid var(--line);border-bottom:0;text-align:center}
+.wrap.benefits .benefit:last-child{border-left:0}
+.wrap.benefits .benefit-icon{width:32px;height:32px;font-size:16px}
+.wrap.benefits .benefit>div{min-width:0}
+.wrap.benefits .benefit strong{font-size:10px;line-height:1.35}
+.wrap.benefits .benefit small{display:block;font-size:9px;line-height:1.35}
+}
+@media(max-width:380px){.wrap.benefits .benefit{padding-inline:1px}.wrap.benefits .benefit-icon{width:29px;height:29px;font-size:15px}.wrap.benefits .benefit strong{font-size:9px}.wrap.benefits .benefit small{font-size:8px}}
+</style>
 </head>
 <body>
   <div class="topline">توصيل مجاني للطلبات فوق 250 د.م. <span>✦</span> لفترة محدودة</div>
@@ -86,6 +98,7 @@
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js"));}</script>
 </body>
 </html>
+
 
 
 
