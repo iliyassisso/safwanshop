@@ -23,7 +23,16 @@
   style.textContent += `
     @media(max-width:650px){header.wrap.nav.product-page-nav{flex-wrap:nowrap!important;justify-content:space-between;gap:4px!important;padding-inline:0}header.wrap.nav.product-page-nav>.brand{position:static!important;order:0!important;flex:0 0 auto!important;max-width:none!important;min-width:0;margin:0!important;gap:2px!important;transform:none!important}header.wrap.nav.product-page-nav>.nav-language-tools{display:flex!important;order:1!important;flex:0 1 auto!important;width:auto!important;min-width:0;justify-content:flex-end;gap:2px!important}.product-page-nav .language-menu{gap:1px!important}.product-page-nav .language-menu button{width:28px!important;min-height:36px!important;padding:0!important;gap:1px!important;font-size:7px!important}.product-page-nav .flag-circle{width:18px!important;height:18px!important}.product-page-nav .navtools{gap:2px!important}.product-page-nav .navtools .iconbtn{width:23px!important;height:23px!important}.product-page-nav .navtools .iconbtn svg{width:14px!important;height:14px!important}.product-page-nav .navtools .count{min-width:12px;height:12px;font-size:8px;top:-3px;left:-3px}.product-page-nav .brand-mark{width:24px!important;height:24px!important}.product-page-nav .brand-wordmark strong{font-size:13px!important;letter-spacing:.025em!important}.product-page-nav .brand-wordmark small{font-size:6px!important;letter-spacing:.16em!important}}
   `;
-  document.head.append(style);
+  style.textContent += `
+    @media(max-width:650px){
+      header .nav{position:relative!important}
+      header .nav>.nav-language-tools{display:flex!important;position:static!important;order:1!important;flex:1 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;justify-content:flex-end!important;gap:7px!important}
+      header .nav>.nav-language-tools>.language-control{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:25!important;margin:0!important}
+      header .nav>.nav-language-tools>.language-control .language-menu{gap:8px!important}
+      header .nav>.nav-language-tools>.navtools{margin-left:auto!important;flex:0 0 auto!important}
+      header .nav.success-page-nav>.nav-language-tools>.language-control{top:22px!important}
+    }
+  `;  document.head.append(style);
   const saved = localStorage.getItem('safwanshop-theme');
   if (saved === 'dark') document.documentElement.classList.add('dark-mode');
   const icon = (dark) => dark
@@ -44,5 +53,6 @@
     document.querySelectorAll('.navCartCount').forEach(count => { count.textContent = formatter.format(quantity); });
   } catch {}
 })();
+
 
 
