@@ -53,6 +53,19 @@
     .nav .language-menu button:hover{box-shadow:0 6px 14px #315c4525!important}
     @media(max-width:650px){.nav .brand{padding:4px 7px!important;border-radius:11px!important}}
   `;
+  style.textContent += `
+    header.shared-store-navigation .nav-center{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;order:1}
+    header.shared-store-navigation .nav-center .links{display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
+    header.shared-store-navigation .nav-center .links a{padding:9px 11px;border:1px solid #c6d4c3;border-radius:9px;background:#ffffff80;color:#3f4f42;text-decoration:none;font-weight:600;transition:background .2s,border-color .2s}
+    header.shared-store-navigation .nav-center .links a:hover{background:#edf1e7;border-color:#bcd2c1}
+    header.shared-store-navigation>.mobilemenu{display:none}
+    header.shared-store-navigation>.nav-language-tools{order:2}
+    @media(max-width:1050px){header.shared-store-navigation .nav-center .links{gap:3px}header.shared-store-navigation .nav-center .links a{padding:8px 7px;font-size:13px}}
+    @media(max-width:650px){header.shared-store-navigation{position:sticky!important;top:0!important;z-index:1000!important;display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:3px!important;min-height:65px!important;height:auto!important;padding:4px 0!important}header.shared-store-navigation>.brand{order:0!important}header.shared-store-navigation>.nav-language-tools{order:1!important}header.shared-store-navigation>.mobilemenu{display:grid!important;position:relative!important;order:2!important;flex:0 0 32px!important;width:32px!important;height:32px!important;top:8px!important;place-items:center!important;cursor:pointer}header.shared-store-navigation>.nav-center{display:none!important;position:absolute!important;left:0!important;right:0!important;top:100%!important;z-index:70!important;flex:none!important;padding:10px!important;background:#e9eee3!important;border:1px solid #d6e4d9!important;border-radius:0 0 14px 14px!important;box-shadow:0 12px 25px #203a2b20!important}header.shared-store-navigation.mobile-nav-open>.nav-center{display:block!important}header.shared-store-navigation .nav-center .links{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:5px!important;white-space:normal!important}header.shared-store-navigation .nav-center .links a{display:block!important;padding:10px 12px!important;font-size:14px!important;text-align:right!important;background:#ffffffb8!important}header.shared-store-navigation .nav-center .links a:hover{background:#dcebe0!important}}
+  `;
+  style.textContent += `
+    @media(max-width:650px){.nav.home-nav.mobile-nav-open>.nav-center{display:block!important;position:absolute!important;top:100%!important;left:0!important;right:0!important;z-index:70!important;padding:10px!important;background:#e9eee3!important;border:1px solid #d6e4d9!important;border-radius:0 0 14px 14px!important;box-shadow:0 12px 25px #203a2b20!important}.nav.home-nav.mobile-nav-open>.nav-center>.links{display:flex!important;position:static!important;flex-direction:column!important;align-items:stretch!important;gap:5px!important;min-width:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}.nav.home-nav.mobile-nav-open>.nav-center>.links a{display:block!important;padding:10px 12px!important;text-align:right!important;background:#ffffffb8!important;border:1px solid #d6e4d9!important;border-radius:9px!important}}
+  `;
   document.head.append(style);
   const saved = localStorage.getItem('safwanshop-theme');
   if (saved === 'dark') document.documentElement.classList.add('dark-mode');
@@ -73,6 +86,24 @@
     const formatter = new Intl.NumberFormat(document.documentElement.lang === 'ar' ? 'ar-EG' : 'en');
     document.querySelectorAll('.navCartCount').forEach(count => { count.textContent = formatter.format(quantity); });
   } catch {}
+  // Match the home navigation on product, checkout, and confirmation pages.
+  const pageHeader=document.querySelector('header .nav')||document.querySelector('header');
+  if(pageHeader&&!pageHeader.classList.contains('home-nav')){
+    pageHeader.classList.add('nav','wrap','home-nav','shared-store-navigation');
+    pageHeader.classList.remove('product-page-nav','checkout-page-nav','success-page-nav');
+    const nav=document.createElement('nav');nav.className='links';nav.setAttribute('aria-label','التنقل');
+    nav.innerHTML='<a href="index.html#home">الرئيسية</a><a href="index.html#products">تسوّق الآن</a><a href="index.html#story">قصتنا</a><a href="index.html#contact">تواصل معنا</a>';
+    const center=document.createElement('div');center.className='nav-center';center.append(nav);
+    const oldBack=pageHeader.querySelector(':scope > .back');
+    if(oldBack){oldBack.className='';oldBack.textContent='متابعة التسوق';nav.append(oldBack)}
+    const languageGroup=pageHeader.querySelector(':scope > .nav-language-tools');
+    pageHeader.insertBefore(center,languageGroup||pageHeader.firstChild);
+    const menu=document.createElement('button');menu.className='iconbtn mobilemenu';menu.type='button';menu.setAttribute('aria-label','القائمة');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-controls','mobileLinks');menu.textContent='☰';
+    nav.id='mobileLinks';pageHeader.append(menu);
+    menu.addEventListener('click',()=>{const open=pageHeader.classList.toggle('mobile-nav-open');menu.setAttribute('aria-expanded',String(open))});
+    nav.addEventListener('click',event=>{if(event.target.closest('a')){pageHeader.classList.remove('mobile-nav-open');menu.setAttribute('aria-expanded','false')}});
+    document.addEventListener('click',event=>{if(!pageHeader.contains(event.target)){pageHeader.classList.remove('mobile-nav-open');menu.setAttribute('aria-expanded','false')}});
+  }
 })();
 
 
