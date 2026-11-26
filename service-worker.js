@@ -1,4 +1,4 @@
-const CACHE = 'safwanshop-v30';
+const CACHE = 'safwanshop-v31';
 const CORE = [
   './', './index.html', './product.html', './checkout.html', './success.html',
   './i18n.js', './darkmode.js', './icon.svg', './manifest.webmanifest',
