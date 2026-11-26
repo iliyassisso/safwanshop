@@ -25,7 +25,7 @@
   `;
   style.textContent += `
     @media(max-width:650px){
-      header .nav,header.nav{position:relative!important}
+      header .nav{position:relative!important}header.nav{position:sticky!important;top:0!important}
       header .nav>.nav-language-tools,header.nav>.nav-language-tools{display:flex!important;position:static!important;order:1!important;flex:1 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;justify-content:flex-end!important;gap:7px!important}
       header .nav>.nav-language-tools>.language-control,header.nav>.nav-language-tools>.language-control{position:absolute!important;left:50%!important;top:calc(50% + 8px)!important;transform:translate(-50%,-50%)!important;z-index:25!important;margin:0!important}
       header .nav>.nav-language-tools>.language-control .language-menu,header.nav>.nav-language-tools>.language-control .language-menu{gap:8px!important}

@@ -38,9 +38,9 @@ body header.nav.success-page-nav>.back{position:static!important;order:2!importa
   <script>
     const params=new URLSearchParams(location.search);const summary=params.get('summary');const product=params.get('product');const quantity=params.get('quantity');if(summary){document.getElementById('summary').textContent=summary}else if(product){document.getElementById('summary').textContent='المنتج: '+product+(quantity?' — الكمية: '+quantity:'')}
   </script>
-  <script src="i18n.js?v=26"></script>
-<script src="darkmode.js"></script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=26",{updateViaCache:"none"}).then(registration=>registration.update()));}</script>
+  <script src="i18n.js?v=27"></script>
+<script src="darkmode.js?v=27"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=27",{updateViaCache:"none"}).then(registration=>registration.update()));}</script>
 </body>
 </html>
 
