@@ -31,6 +31,13 @@
   for(const [arabic,western] of ['0','1','2','3','4','5','6','7','8','9'].entries()){const digit=String.fromCharCode(0x0660+arabic);dictionaries.ar[digit]=western;dictionaries.fr[digit]=western;dictionaries.en[digit]=western}
   const flags={ar:'<svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="15" fill="#c1272d"/><path d="M15 5 L20.88 23.09 L5.49 11.91 L24.51 11.91 L9.12 23.09 Z" fill="none" stroke="#006233" stroke-width="1.35" stroke-linejoin="round"/></svg>',fr:'<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="10" height="30" fill="#002395"/><rect x="10" width="10" height="30" fill="#fff"/><rect x="20" width="10" height="30" fill="#ed2939"/></svg>',en:'<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#012169"/><path d="M0 0l30 30M30 0L0 30" stroke="#fff" stroke-width="7"/><path d="M0 0l30 30M30 0L0 30" stroke="#c8102e" stroke-width="3"/><path d="M15 0v30M0 15h30" stroke="#fff" stroke-width="9"/><path d="M15 0v30M0 15h30" stroke="#c8102e" stroke-width="4"/></svg>'};
   const originals=new WeakMap(),attrOriginals=new WeakMap();let current='ar';
+  const isAndroidApp = /Android/i.test(navigator.userAgent) && /\bwv\b/i.test(navigator.userAgent);
+  if(isAndroidApp){
+    document.documentElement.classList.add('safwanshop-android-app');
+    const appInsetStyle=document.createElement('style');
+    appInsetStyle.textContent='@media(max-width:650px){html.safwanshop-android-app header{top:24px!important}html.safwanshop-android-app body:before{content:"";position:fixed;inset:0 0 auto;height:24px;background:#e9eee3;z-index:1001;pointer-events:none}}';
+    document.head.append(appInsetStyle);
+  }
   const sorted=(dict)=>Object.entries(dict).sort((a,b)=>b[0].length-a[0].length);
   function translateValue(value,lang){let result=value;for(const [source,target] of sorted(dictionaries[lang]||{}))result=result.split(source).join(target);return result}
   function walk(){const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(!originals.has(node))originals.set(node,node.nodeValue);const translated=translateValue(originals.get(node),current);if(node.nodeValue!==translated)node.nodeValue=translated}document.querySelectorAll('[placeholder],[aria-label],[title],[alt]').forEach(el=>{for(const attr of ['placeholder','aria-label','title','alt'])if(el.hasAttribute(attr)){let saved=attrOriginals.get(el);if(!saved){saved={};attrOriginals.set(el,saved)}if(!(attr in saved))saved[attr]=el.getAttribute(attr);const translated=translateValue(saved[attr],current);if(el.getAttribute(attr)!==translated)el.setAttribute(attr,translated)}})}
