@@ -30,6 +30,7 @@
       header .nav>.nav-language-tools>.language-control,header.nav>.nav-language-tools>.language-control{position:absolute!important;left:50%!important;top:calc(50% + 8px)!important;transform:translate(-50%,-50%)!important;z-index:25!important;margin:0!important}
       header .nav>.nav-language-tools>.language-control .language-menu,header.nav>.nav-language-tools>.language-control .language-menu{gap:8px!important}
       header .nav>.nav-language-tools>.navtools,header.nav>.nav-language-tools>.navtools{margin-left:auto!important;flex:0 0 auto!important}
+      header .nav>.brand,header.nav>.brand{transform:translate(-18px,6px)!important}
       header.nav.checkout-page-nav{direction:ltr!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-rows:48px!important;align-items:center!important;justify-content:stretch!important;gap:4px 5px!important;height:auto!important;min-height:0!important;padding:7px 0!important}
       header.nav.checkout-page-nav>.brand{grid-column:1!important;grid-row:1!important;position:static!important;order:0!important;flex:none!important;max-width:none!important;min-width:0!important;margin:0!important;transform:none!important;justify-self:start!important}
       header.nav.checkout-page-nav>.nav-language-tools{display:contents!important}
