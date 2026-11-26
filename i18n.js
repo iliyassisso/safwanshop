@@ -35,7 +35,7 @@
   if(isAndroidApp){
     document.documentElement.classList.add('safwanshop-android-app');
     const appInsetStyle=document.createElement('style');
-    appInsetStyle.textContent='@media(max-width:650px){html.safwanshop-android-app body{padding-top:0!important}html.safwanshop-android-app header{top:0!important}}';
+    appInsetStyle.textContent='@media(max-width:650px){html.safwanshop-android-app body{padding-top:24px!important}html.safwanshop-android-app header{top:24px!important}}';
     document.head.append(appInsetStyle);
   }
   const sorted=(dict)=>Object.entries(dict).sort((a,b)=>b[0].length-a[0].length);
