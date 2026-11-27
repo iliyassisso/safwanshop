@@ -87,9 +87,9 @@
     const gallery=product.gallery||[product.image];const thumbnailBox=document.getElementById('productThumbnails');if(gallery.length>1){thumbnailBox.innerHTML=gallery.map((src,index)=>`<button type="button" class="gallery-thumb${index===0?' active':''}" aria-label="عرض صورة المنتج ${index+1}" title="عرض صورة المنتج ${index+1}" onclick="selectGalleryImage(${index})"><img src="${src}" alt=""></button>`).join('')}function selectGalleryImage(index){if(!gallery[index])return;const main=document.getElementById('productImage');main.src=gallery[index];thumbnailBox.querySelectorAll('.gallery-thumb').forEach((thumb,i)=>thumb.classList.toggle('active',i===index))}
     document.getElementById('orderForm').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const data=new FormData(form);data.append('product',product.name);data.append('unit_price',product.price+' د.م.');data.append('_subject','طلب جديد من safwanshop: '+product.name);const button=form.querySelector('.submit');const notice=document.getElementById('notice');button.disabled=true;button.textContent='جارٍ إرسال الطلب…';notice.classList.remove('show');try{const response=await fetch(form.action,{method:'POST',body:data,headers:{Accept:'application/json'}});if(!response.ok)throw new Error('submission failed');location.href='success.html?product='+encodeURIComponent(product.name)+'&quantity='+encodeURIComponent(data.get('quantity'))}catch(error){notice.textContent='تعذّر إرسال الطلب الآن. تحقق من اتصال الإنترنت وحاول مرة أخرى.';notice.classList.add('show')}finally{button.disabled=false;button.textContent='إرسال الطلب إلى المتجر'}});
   </script>
-  <script src="i18n.js?v=40"></script>
-<script src="darkmode.js?v=40"></script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=40",{updateViaCache:"none"}).then(registration=>registration.update()));}</script>
+  <script src="i18n.js?v=41"></script>
+<script src="darkmode.js?v=41"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js?v=41",{updateViaCache:"none"}).then(registration=>registration.update()));}</script>
 </body>
 </html>
 
