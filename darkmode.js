@@ -108,6 +108,17 @@
     nav.addEventListener('click',event=>{if(event.target.closest('a')){pageHeader.classList.remove('mobile-nav-open');menu.setAttribute('aria-expanded','false')}});
     document.addEventListener('click',event=>{if(!pageHeader.contains(event.target)){pageHeader.classList.remove('mobile-nav-open');menu.setAttribute('aria-expanded','false')}});
   }
+  // Keep the language picker and action buttons as separate items in the shared header row.
+  if(pageHeader){
+    const languageGroup=pageHeader.querySelector(':scope > .nav-language-tools');
+    if(languageGroup){
+      const picker=languageGroup.querySelector('.language-control');
+      const tools=languageGroup.querySelector('.navtools');
+      if(picker)pageHeader.insertBefore(picker,languageGroup);
+      if(tools)pageHeader.insertBefore(tools,languageGroup);
+      languageGroup.remove();
+    }
+  }
 })();
 
 
