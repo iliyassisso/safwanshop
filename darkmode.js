@@ -73,7 +73,7 @@
     @media(max-width:650px){header .nav.shared-store-navigation>.language-control,header.nav.shared-store-navigation>.language-control{position:absolute!important;left:50%!important;right:auto!important;top:calc(50% + 8px)!important;transform:translate(-50%,-50%)!important;z-index:25!important;margin:0!important;grid-column:auto!important;grid-row:auto!important}}
   `;
   style.textContent += `
-    @media(max-width:650px){header.nav.shared-store-navigation>.brand{transform:translate(-16px,14px)!important}}
+    @media(max-width:650px){header.nav.shared-store-navigation>.brand{transform:translate(-8px,6px)!important}}
   `;
   document.head.append(style);
   const saved = localStorage.getItem('safwanshop-theme');
